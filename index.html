@@ -21,9 +21,12 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
-  <!-- Optimization: Production React & ReactDOM -->
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <!-- React & ReactDOM (Reverted to Dev for Debugging, but using Production URLs commented out for easy switch) -->
+  <!-- <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script> -->
+  <!-- <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script> -->
+
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
   <!-- Babel Standalone -->
   <script src="https://unpkg.com/@babel/standalone@7.23.6/babel.min.js"></script>
@@ -90,11 +93,13 @@
 <body class="bg-slate-50 text-slate-900 antialiased">
   <div id="root"></div>
 
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Lucide Icons React UMD -->
+  <script src="https://unpkg.com/lucide-react@latest/dist/umd/lucide-react.js"></script>
 
   <script type="text/babel">
     const { useState, useEffect, useRef } = React;
+
+    // Fix: Use lucideReact global instead of lucide
     const {
       ShieldCheck,
       Star,
@@ -115,7 +120,7 @@
       XCircle,
       Check,
       AlertTriangle
-    } = lucide;
+    } = lucideReact;
 
     // --- Components ---
 
@@ -287,9 +292,10 @@
     };
 
     const ProductHero = ({ formRef }) => {
-      useEffect(() => {
-        lucide.createIcons();
-      }, []);
+      // Removed createIcons call as we are using React components
+      // useEffect(() => {
+      //   lucide.createIcons();
+      // }, []);
 
       const scrollToForm = () => {
         if (formRef.current) {
@@ -306,11 +312,11 @@
             {/* Logo Mobile */}
             <div className="md:hidden flex justify-center mb-4">
               <img
-                src="img/logo.png"
-                alt="Adenofrin Logo Oficial"
-                width="176"
-                height="80"
-                className="h-24 object-contain"
+                src="img/logo.png" --
+              alt="Adenofrin Logo Oficial"
+              width="176"
+              height="80"
+              className="h-24 object-contain"
               />
             </div>
 
