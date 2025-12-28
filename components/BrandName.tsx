@@ -1,8 +1,13 @@
 import React from 'react';
 
-export const BrandName: React.FC = () => (
-  <span className="font-extrabold italic tracking-tight">
-    Aden<span className="text-orange-600">ofrin</span>
+interface BrandNameProps {
+  className?: string;
+}
+
+const BrandName: React.FC<BrandNameProps> = ({ className = "" }) => (
+  <span className={`font-black tracking-tighter ${className}`}>
+    <span className="text-blue-600">ADENO</span>
+    <span className="text-slate-800">FRIN</span>
   </span>
 );
 
