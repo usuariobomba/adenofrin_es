@@ -30,13 +30,13 @@ const LeadForm: React.FC<FormProps> = ({ isSubmitting }) => {
 
   return (
     <div className="bg-white rounded-lg shadow-lg border border-slate-200 overflow-hidden max-w-sm mx-auto">
-      <div className="bg-blue-600 p-3 flex items-center justify-between border-b border-blue-700">
-        <h3 className="text-lg font-black text-white uppercase tracking-widest text-shadow-sm leading-none">
-          ¡OFERTA<br />LIMITADA!
+      <div className="bg-slate-50 p-4 border-b border-slate-100 text-center">
+        <h3 className="text-lg font-bold text-slate-800 leading-tight">
+          Verifica si <BrandName /> está disponible
         </h3>
-        <div className="bg-white text-blue-700 px-3 py-1 rounded font-black text-xl shadow-sm transform -rotate-2">
-          20€
-        </div>
+        <p className="text-xs text-slate-500 mt-1">
+          Sin tarjeta de crédito. Pagas al recibir.
+        </p>
       </div>
 
       <div className="p-5">

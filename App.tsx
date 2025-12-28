@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import Header from './components/Header';
 import ProductHero from './components/ProductHero';
+import LeadForm from './components/LeadForm';
 import Footer from './components/Footer';
 import SocialProofPopup from './components/SocialProofPopup';
 import {
@@ -14,25 +15,30 @@ import {
 } from './components/PageSections';
 
 const App: React.FC = () => {
-  const topRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLElement>(null);
 
-  const scrollToTop = () => {
-    topRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const scrollToForm = () => {
+    formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (
-    <div className="min-h-screen bg-white font-sans text-slate-900" ref={topRef}>
+    <div className="min-h-screen bg-white font-sans text-slate-900">
       <Header />
 
       <main>
-        {/* 1. Hero with Integrated Form */}
-        <ProductHero onCtaClick={() => { }} />
+        {/* 1. Hero */}
+        <ProductHero onCtaClick={scrollToForm} />
 
         {/* 2. Problem ID */}
         <ProblemIdentificationSection />
 
         {/* 3. What Is */}
         <WhatIsSection />
+
+        {/* 4. Form Section */}
+        <section id="form-section" ref={formRef} className="py-12 px-4 bg-slate-50 border-y border-slate-200">
+          <LeadForm isSubmitting={false} onSubmit={() => { }} />
+        </section>
 
         {/* 5. Benefits */}
         <BenefitsSection />
@@ -43,8 +49,8 @@ const App: React.FC = () => {
         {/* 7. Usage */}
         <UsageSection />
 
-        {/* 8. Offer - CTA scrolls to top */}
-        <OfferSection onCtaClick={scrollToTop} />
+        {/* 8. Offer */}
+        <OfferSection onCtaClick={scrollToForm} />
 
         {/* 9. Official Statement */}
         <OfficialStatementSection />
