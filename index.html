@@ -93,34 +93,64 @@
 <body class="bg-slate-50 text-slate-900 antialiased">
   <div id="root"></div>
 
-  <!-- Lucide Icons React UMD -->
-  <script src="https://unpkg.com/lucide-react@latest/dist/umd/lucide-react.js"></script>
+  <!-- Lucide Icons Vanilla (Reliable Global) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 
   <script type="text/babel">
     const { useState, useEffect, useRef } = React;
 
-    // Fix: Use lucideReact global instead of lucide
-    const {
-      ShieldCheck,
-      Star,
-      CheckCircle2,
-      AlertCircle,
-      Clock,
-      Truck,
-      Phone,
-      ChevronDown,
-      Menu,
-      X,
-      Award,
-      ThumbsUp,
-      UserCheck,
-      Lock,
-      Zap,
-      Wallet,
-      XCircle,
-      Check,
-      AlertTriangle
-    } = lucideReact;
+    // --- Safe Icon Adapter ---
+    // Converts Lucide's vanilla icon definitions e.g. ["svg", attrs, [children]] to React Elements
+    const LucideIcon = ({ iconName, className, ...props }) => {
+      const iconDef = lucide.icons[iconName];
+      if (!iconDef) return null;
+
+      const [tag, attrs, children] = iconDef;
+
+      // Helper to convert kebab-case attributes to camelCase for React (e.g. stroke-width -> strokeWidth)
+      const toCamel = (s) => s.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+
+      const reactAttrs = Object.entries(attrs).reduce((acc, [key, val]) => {
+        const reactKey = key === 'class' ? 'className' : toCamel(key);
+        acc[reactKey] = val;
+        return acc;
+      }, { className: className, ...props });
+
+      return React.createElement(
+        tag,
+        reactAttrs,
+        children.map(([childTag, childAttrs], index) => {
+          const childReactAttrs = Object.entries(childAttrs).reduce((acc, [key, val]) => {
+            acc[toCamel(key)] = val;
+            return acc;
+          }, { key: index });
+          return React.createElement(childTag, childReactAttrs);
+        })
+      );
+    };
+
+    // Create Components for used icons
+    const makeIcon = (name) => (props) => <LucideIcon iconName={name} {...props} />;
+
+    const ShieldCheck = makeIcon('ShieldCheck');
+    const Star = makeIcon('Star');
+    const CheckCircle2 = makeIcon('CheckCircle2');
+    const AlertCircle = makeIcon('AlertCircle');
+    const Clock = makeIcon('Clock');
+    const Truck = makeIcon('Truck');
+    const Phone = makeIcon('Phone');
+    const ChevronDown = makeIcon('ChevronDown');
+    const Menu = makeIcon('Menu');
+    const X = makeIcon('X');
+    const Award = makeIcon('Award');
+    const ThumbsUp = makeIcon('ThumbsUp');
+    const UserCheck = makeIcon('UserCheck');
+    const Lock = makeIcon('Lock');
+    const Zap = makeIcon('Zap');
+    const Wallet = makeIcon('Wallet');
+    const XCircle = makeIcon('XCircle');
+    const Check = makeIcon('Check');
+    const AlertTriangle = makeIcon('AlertTriangle');
 
     // --- Components ---
 
