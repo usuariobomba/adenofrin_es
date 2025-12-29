@@ -1,20 +1,66 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Projeto Adenofrin ES - Landing Page
 
-# Run and deploy your AI Studio app
+Este é um projeto Vite + React + TypeScript com Tailwind CSS.
 
-This contains everything you need to run your app locally.
+## 🚀 Como Rodar o Projeto
 
-View your app in AI Studio: https://ai.studio/apps/drive/1szVe0sL2nxhBzpLiDkND8l8MVtMMf3lR
+### Pré-requisitos
+Você precisa ter o Node.js instalado no seu sistema. Se não tiver, baixe em: https://nodejs.org/
 
-## Run Locally
+### Instalação das Dependências
 
-**Prerequisites:**  Node.js
+```bash
+npm install
+```
 
+### Executar Localmente
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+```bash
+npm run dev
+```
+
+O projeto estará disponível em `http://localhost:3000`
+
+### Build para Produção
+
+```bash
+npm run build
+```
+
+Os arquivos compilados estarão na pasta `dist/`.
+
+## 📁 Estrutura do Projeto
+
+```
+ADENOFRIN_ES/
+├── components/        # Componentes React
+├── api/              # Serverless functions (Vercel)
+├── public/           # Arquivos estáticos
+├── index.html        # Template HTML
+├── index.tsx         # Entry point da aplicação
+├── App.tsx           # Componente principal
+├── index.css         # Estilos globais + Tailwind
+└── vite.config.ts    # Configuração do Vite
+```
+
+## 🌐 Deploy no Vercel
+
+O projeto está configurado para deploy automático no Vercel. Certifique-se de que o comando de build está configurado como:
+
+```
+npm run build
+```
+
+E o diretório de output como:
+
+```
+dist
+```
+
+## ⚙️ Tecnologias
+
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS
+- Lucide React (ícones)
